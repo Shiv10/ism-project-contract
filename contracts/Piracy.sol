@@ -11,6 +11,8 @@ contract Piracy {
     mapping (string => address) public approvedRequests;
     string[] public approved;
 
+    event newFile(address from, string file);
+
     constructor() {
         owner = msg.sender;
         admins[msg.sender] = true;
@@ -44,6 +46,7 @@ contract Piracy {
         require(!compareStrings(requests[addr], ""), "No pending requests for this address");
         approved.push(requests[addr]);
         approvedRequests[requests[addr]] = addr;
+        emit newFile(addr, requests[addr]);
         requests[addr] = "";
     }
 
