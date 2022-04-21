@@ -50,8 +50,8 @@ contract Piracy {
         requests[addr] = "";
     }
 
-    function checkIsAdmin() public view returns(bool) {
-        return admins[msg.sender];
+    function checkIsAdmin(address addr) public view returns(bool) {
+        return admins[addr];
     }
 
     function getAllFiles() public view returns (string[] memory) {
