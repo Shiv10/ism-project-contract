@@ -73,6 +73,17 @@ contract Piracy {
         deleteAddressFromArrya(addr);
     }
 
+    function deleteFile(address addr) public onlyAdmin {
+        require(!compareStrings(requests[addr], ""), "No pending requests for this address");
+        requests[addr] = "";
+        deleteAddressFromArrya(addr);
+    }
+
+    function getPendingRequest(address addr) public view returns (string memory) {
+        require(!compareStrings(requests[addr], ""), "No pending requests for this address");
+        return requests[addr];
+    }
+
     function checkIsAdmin(address addr) public view returns(bool) {
         return admins[addr];
     }
