@@ -8,10 +8,19 @@ async function main() {
 
   let txn = await piracy.addFile("https://www.google.com");
 
-  txn = await piracy.checkIsAdmin();
+  txn = await piracy.checkIsAdmin(owner.address);
   console.log(txn);
 
+  txn = await piracy.getPendingAddresses();
+  console.log(txn);
+
+  txn = await piracy.getPendingFileFromAddress(txn[0]);
+  console.log(txn);
+  
   txn = await piracy.approve(owner.address);
+
+  txn = await piracy.getPendingAddresses();
+  console.log(txn);
 
   txn = await piracy.getAllFiles();
   console.log(txn);
